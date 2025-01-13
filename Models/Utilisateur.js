@@ -1,7 +1,7 @@
 const {Model, DataTypes} = require('sequelize')
 const sequelize = require('../Config/Sequelize')
-const Role = require('./Role')
-
+const Role = require('./Role');
+//const Horaire = require('./Horaire');
 class Utilisateur extends Model{
 
 }
@@ -71,6 +71,7 @@ Utilisateur.init({
 })
 
 Utilisateur.belongsTo(Role, {as: 'role', foreignKey: 'role_id'});
+//Utilisateur.hasMany(Horaire, {as: 'horaires', foreignKey: 'utilisateur_id'})
 
 
 module.exports = Utilisateur;

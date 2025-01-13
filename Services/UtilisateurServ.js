@@ -1,5 +1,5 @@
 const Role = require('../Models/Role');
-const Utilisateur = require('../Models/Utilisateur');
+const{ Utilisateur, Horaire} = require('../Models/Associations')
 
 class UtilisateurServ{
 
@@ -23,6 +23,14 @@ class UtilisateurServ{
 
     async addUtilisateur(utilisateurData){
         return await Utilisateur.create(utilisateurData)
+    }
+
+    async getUtilisateurAvecHoraires(utilisateurIdAvecHoraire){
+        console.log("Tentative de récupération de l'utilisateur avec ses horaires pour l'ID:", utilisateurIdAvecHoraire);
+        return await Utilisateur.findByPk(utilisateurIdAvecHoraire, {include:[{
+            model: Horaire,
+            as: 'horaires'
+        }]})
     }
 }
 
