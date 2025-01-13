@@ -34,9 +34,19 @@ class UtilisateurControl{
             const utilisateur = await UtilisateurServ.getUtilisateurAvecHoraires(req.params.id)
             res.json(utilisateur)
         }catch(error){
-            res.status(500).json({error: "Une erreur s'est produite lors de la récuperation de l'utilisateur avec ses heures"})
+            res.status(500).json({error: "Une erreur s'est produite lors de la récuperation des heures de l'utilisateur"})
         }
 
+    }
+
+    async getUtilisateurAvecPlannings(req, res){
+        try{
+            const utilisateur = await UtilisateurServ.getUtilisateurAvecPlannings(req.params.id)
+            res.json(utilisateur)
+        }catch(error){
+            console.log(error)
+            res.status(500).json({error: " Une erreur s'est produite lors de la récuperation des plannings de l'utilisateur"})
+        }
     }
 }
 

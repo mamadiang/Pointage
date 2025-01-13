@@ -1,5 +1,5 @@
 const Role = require('../Models/Role');
-const{ Utilisateur, Horaire} = require('../Models/Associations')
+const{ Utilisateur, Horaire, Planning} = require('../Models/Associations')
 
 class UtilisateurServ{
 
@@ -26,10 +26,16 @@ class UtilisateurServ{
     }
 
     async getUtilisateurAvecHoraires(utilisateurIdAvecHoraire){
-        console.log("Tentative de récupération de l'utilisateur avec ses horaires pour l'ID:", utilisateurIdAvecHoraire);
         return await Utilisateur.findByPk(utilisateurIdAvecHoraire, {include:[{
             model: Horaire,
             as: 'horaires'
+        }]})
+    }
+
+    async getUtilisateurAvecPlannings(utilisateurAvecPlanning){
+        return await Utilisateur.findByPk(utilisateurAvecPlanning, {include:[{
+            model: Planning,
+            as: 'plannings'
         }]})
     }
 }
