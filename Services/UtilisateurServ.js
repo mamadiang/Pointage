@@ -1,5 +1,5 @@
 const Role = require('../Models/Role');
-const{ Utilisateur, Horaire, Planning} = require('../Models/Associations')
+const{ Utilisateur, Horaire, Planning, Absence} = require('../Models/Associations')
 
 class UtilisateurServ{
 
@@ -36,6 +36,13 @@ class UtilisateurServ{
         return await Utilisateur.findByPk(utilisateurAvecPlanning, {include:[{
             model: Planning,
             as: 'plannings'
+        }]})
+    }
+
+    async getUtilisateurAbsences(utilisateurAbsences){
+        return await Utilisateur.findByPk(utilisateurAbsences, {include:[{
+            model: Absence,
+            as: 'absences'
         }]})
     }
 }
