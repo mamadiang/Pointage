@@ -14,4 +14,13 @@ Utilisateur.hasMany(Planning, {as: 'plannings', foreignKey: 'utilisateur_id'})
 Absence.belongsTo(Utilisateur, {as: 'utilisateur', foreignKey: 'utilisateur_id'})
 Utilisateur.hasMany(Absence, {as: 'absences', foreignKey: 'utilisateur_id'})
 
+Absence.hasMany(Horaire, {as: 'horaires', foreignKey: 'absence_id'})
+Horaire.belongsTo(Absence, {as: 'absences', foreignKey: 'absence_id'})
+
+Planning.hasMany(Horaire, {as: 'horaires', foreignKey: 'planning_id'})
+Horaire.belongsTo(Planning, {as: 'plannings', foreignKey: 'planning_id'})
+
+Absence.belongsTo(Planning, {as: 'plannings', foreignKey: 'planning_id'})
+Planning.hasMany(Absence, {as: 'absences', foreignKey: 'planning_id'})
+
 module.exports = {sequelize, Utilisateur, Horaire, Planning, Absence};

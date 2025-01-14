@@ -45,7 +45,17 @@ Absence.init({
     commentaire:{
         type: DataTypes.TEXT,
         allowNull: false
+    },
+
+    planning_id:{
+        type: DataTypes.INTEGER,
+        references:{
+            model: "Planning",
+            key: 'id'
+        }
     }
+
+
 }, {
     sequelize,
     tableName: 'absence',

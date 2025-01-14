@@ -31,6 +31,22 @@ Horaire.init({
         allowNull: true
     },
 
+    absence_id:{
+        type: DataTypes.INTEGER,
+        references:{
+            model: "Absence",
+            key: 'id'
+        }
+    },
+
+    planning_id:{
+        type: DataTypes.INTEGER,
+        references:{
+            model: "Planning",
+            key: "id"
+        }
+    },
+
     date_creation:{
         type: DataTypes.DATE,
         allowNull: false

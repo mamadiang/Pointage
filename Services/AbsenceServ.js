@@ -22,6 +22,13 @@ class AbsenceServ{
             as: 'utilisateur'
         }]})
     }
+
+    async getAbsenceHoraires(absenceHoraires){
+        return await Absence.findByPk(absenceHoraires, {include:[{
+            model: 'Horaire',
+            as: 'horaires'
+        }]})
+    }
 }
 
 module.exports = new AbsenceServ();

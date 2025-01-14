@@ -23,6 +23,20 @@ class PlanningServ{
             as: 'utilisateur'
         }]})
     }
+
+    async getPlanningAbsences(planningAbsences){
+        return await Planning.findByPk(planningAbsences, {include:[{
+            model: 'Absence',
+            as: 'absences'
+        }]})
+    }
+
+    async getPlanningHoraires(planningHoraires){
+        return await Planning.findByPk(planningHoraires, {include:[{
+            model: 'Horaire',
+            as: 'horaires'
+        }]})
+    }
 }
 
 module.exports = new PlanningServ();

@@ -29,6 +29,15 @@ class AbsenceControl{
             res.status(500).json({error: " Une erreur s'est produite lors de l'ajout d'absence "})
         }
     }
+
+    async getAbsenceHoraires(req, res){
+        try{
+            const absence = await AbsenceServ.getAbsenceHoraires(req.params.id)
+            res.json(absence)
+        }catch(error){
+            res.status(500).json({error: " Une erreur s'est produite lors de la récuperation des horaires d'absence"})
+        }
+    }
 }
 
 module.exports = new AbsenceControl();
