@@ -29,15 +29,6 @@ class PlanningControl{
         }
     }
 
-    async getPlanningHoraires(req, res){
-        try{
-            const planning = await PlanningServ.getPlanningHoraires(req.params.id)
-            res.json(planning)
-        }catch(error){
-            res.json(500).json({error: " Une erreur s'est produite lors de la récuperation des horaires du planning"})
-        }
-    }
-
     async getPlanningAbsences(req, res){
         try{
             const planning = await PlanningServ.getPlanningAbsences(req.params.id)

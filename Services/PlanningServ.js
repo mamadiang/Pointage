@@ -31,12 +31,6 @@ class PlanningServ{
         }]})
     }
 
-    async getPlanningHoraires(planningHoraires){
-        return await Planning.findByPk(planningHoraires, {include:[{
-            model: 'Horaire',
-            as: 'horaires'
-        }]})
-    }
 }
 
 module.exports = new PlanningServ();
