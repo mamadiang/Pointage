@@ -63,6 +63,11 @@ Utilisateur.init({
         }
     },
 
+    fonction:{
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+
 },{
     sequelize,
     modelName: "Utilisateur",
