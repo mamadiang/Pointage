@@ -1,8 +1,11 @@
 const {Model, DataTypes} = require('sequelize')
 const sequelize = require('../Config/Sequelize')
 const Role = require('./Role');
-//const Horaire = require('./Horaire');
+const bcrypt = require('bcrypt')
 class Utilisateur extends Model{
+    async validatePassword(password){
+        return await bcrypt.compare(password, this.mot_passe);
+    }
 
 }
 
@@ -72,11 +75,21 @@ Utilisateur.init({
     sequelize,
     modelName: "Utilisateur",
     tableName: 'utilisateur',
-    timestamps: false
+    timestamps: false,
+    hooks:{
+        beforeCreate: async(utilisateur) =>{
+            utilisateur.mot_passe = await bcrypt.hash(utilisateur.mot_passe, 10);
+        },
+
+        beforeUpdate: async(utilisateur) =>{
+            if(utilisateur.changed('mot_passe')){
+                utilisateur.mot_passe = await bcrypt.hash(utilisateur.mot_passe, 10)
+            }
+        }
+    }
 })
 
 Utilisateur.belongsTo(Role, {as: 'role', foreignKey: 'role_id'});
-//Utilisateur.hasMany(Horaire, {as: 'horaires', foreignKey: 'utilisateur_id'})
 
 
 module.exports = Utilisateur;
