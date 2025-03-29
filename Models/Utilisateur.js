@@ -69,6 +69,11 @@ Utilisateur.init({
     fonction:{
         type: DataTypes.STRING,
         allowNull: false
+    },
+
+    matricule:{
+        type: DataTypes.STRING,
+        allowNull: false
     }
 
 },{
