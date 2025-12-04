@@ -1,0 +1,37 @@
+body{
+    background-color: #242C6C;
+    
+}
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+h1{
+    color: aliceblue;
+    font-family: 'Roboto';
+}
+
+@keyframes monAnimation {
+    0% {
+       
+        transform: scale(1);
+    }
+    50% {
+        
+        transform: scale(1.2);
+    }
+    100% {
+       
+        transform: scale(1);
+    }
+}
+
+.imageAccueil{
+    cursor: pointer;
+    animation: monAnimation 2s ease-in-out infinite alternate;
+}
