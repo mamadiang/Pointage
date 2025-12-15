@@ -1,5 +1,11 @@
-body{
+@font-face {
+  font-family: 'Police'; /* Le nom logique pour le CSS */
+  src: url('../Styles/PUNKBABE TRIAL.ttf'); 
+  /* font-display: swap; */
+
+}body{
     background-color: #242C6C;
+    
     
 }
 
@@ -10,11 +16,55 @@ body{
   text-align: center;
 }
 
-
-h1{
+.connexion{
     color: aliceblue;
-    font-family: 'Roboto';
+    font-family: 'Police';
+      
 }
+
+ON NE TOUCHE PAS AU LAYOUT
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Bouton */
+.connexion {
+  position: relative;
+  display: inline-block; /* garde EXACTEMENT la position naturelle */
+  cursor: pointer;
+}
+
+/* TEXTE */
+.connexion span {
+  transition: opacity 0.25s ease;
+}
+
+/* IMAGE */
+.verso-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  transform: translate(-50%, -50%);
+  width: 120px; /* ajuste à ton image */
+  opacity: 0;
+  
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+/* HOVER */
+.connexion:hover span {
+  opacity: 0;
+}
+
+.connexion:hover .verso-img {
+  opacity: 1;
+}
+
 
 @keyframes monAnimation {
     0% {

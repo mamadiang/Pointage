@@ -1,5 +1,8 @@
 import logo from '../assets/Al-Rayan-logo.png';
+import verso from '../assets/connexion.png'
 import '../Styles/Accueil.css';
+import { Link } from 'react-router-dom';
+
 
 function Accueil(){
 
@@ -8,10 +11,17 @@ function Accueil(){
         <>
            <div className="accueil"> 
 
-                <h1>Bienvenue</h1>
+               <Link to="/connexion"> 
+
+                    <h1 className="connexion">
+                        <span>Se Connecter</span>
+                        <img src={verso} alt="" className="verso-img"/>
+                    </h1>
+
+                </Link>
 
                 <div className='imageAccueil'>
-                    <img src={logo} className='logo' alt="" />
+                    <img src={logo} alt="" />
                 </div>
 
             </div>

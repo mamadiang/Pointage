@@ -1,0 +1,74 @@
+.login-container {
+    
+    width: 100%;
+    min-height: 90vh;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-form {
+    text-align: center;
+    background: whitesmoke;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px whitesmoke;
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+  }
+  
+.connexion-title{
+  color: #242C6C;
+  padding: 20px;
+}
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 60%;
+    padding: 10px;
+    margin: 8px;
+    box-sizing: border-box;
+    border-radius: 20px;
+  }
+  
+  .error {
+    color: red;
+    font-size: xx-small;
+  }
+  
+  button {
+    width: 62%;
+    padding: 10px;
+    background-color: green;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 40px;
+  }
+  
+  button:disabled {
+    background-color: gray;
+    padding: 10px;
+  }
+
+  
+  .p-forgot{
+    color: #242C6C;
+    text-decoration: underline;
+    margin-top: 0px;
+    font-size: x-small;
+    cursor: pointer;
+  }
+
+  
