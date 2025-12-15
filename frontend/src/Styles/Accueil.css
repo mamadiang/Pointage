@@ -85,3 +85,57 @@ ON NE TOUCHE PAS AU LAYOUT
     cursor: pointer;
     animation: monAnimation 2s ease-in-out infinite alternate;
 }
+
+@media (max-width: 400px) {
+   
+    #root {
+       
+        max-width: 100%;
+        padding: 1rem 0.5rem; 
+        overflow-x: hidden;
+    }
+
+    
+    .accueil {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .imageAccueil {
+        width: 100%;
+        display: block; 
+        margin: 5vh auto 0 auto; 
+    }
+    
+    .imageAccueil img {
+        max-width: 80vw; 
+        height: auto;
+        margin: 0 auto;
+        display: block; 
+        
+        animation: none !important; 
+        transform: none !important; 
+    }
+    
+    .connexion {
+        font-size: 1.5rem; 
+        margin-top: 30px; 
+        padding: 10px 0; 
+        width: 100%;
+        text-align: center;
+    }
+    
+    .verso-img {
+        width: 100px; 
+    }
+    .connexion span {
+        opacity: 1 !important; 
+    }
+    .connexion .verso-img {
+        opacity: 0 !important;
+    }
+}
