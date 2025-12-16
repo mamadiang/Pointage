@@ -1,0 +1,55 @@
+/* Assurez-vous que le conteneur principal utilise Flexbox */
+@media (max-width: 400px){
+
+    .Collab-Navbar {
+        /* Permet d'aligner les éléments sur une seule ligne */
+        display: flex; 
+
+        /* ALIGNEMENT CLÉ : Écarte au maximum les éléments */
+        justify-content: space-between; 
+
+        /* Optionnel : Centre verticalement si les images n'ont pas la même hauteur */
+        align-items: center; 
+
+        /* Optionnel : Assure que la barre prend toute la largeur */
+        width: 100%; 
+
+        /* Optionnel : Ajoutez un peu d'espace sur les côtés si nécessaire */
+        padding: 0 10px; 
+        box-sizing: border-box;
+        position: fixed; 
+        top: 0;
+        left: 0;
+        z-index: 1000; /* Assure que la barre est au-dessus des autres éléments */
+    
+        width: 100%;
+        box-shadow: 0 0 10px black;
+
+    }
+
+    /* Optionnel : Ajoutez des styles pour contrôler la taille des images */
+    .image-logo, .porfile {
+        height: 50px; /* Exemple de taille pour le logo et l'image de profil */
+        width: auto;
+    }
+
+   .bjr{
+        position: fixed;
+        top: 70px; /* Juste sous la navbar de 60px */
+        left: 10px; /* Marge à gauche */
+        right: auto;
+        /* Supprimer l'ancien right: 79% pour ne pas contraindre la largeur */
+    }
+
+    .date{
+        /* On retire le padding-top si on utilise top: [valeur] */
+        position: fixed;
+        top: 100px; /* 30px sous le bjr (70px + 30px) */
+        left: 10px; /* Marge à gauche identique à .bjr */
+        right: auto; /* CLÉ : Laisse l'élément s'étirer */
+        width: auto;
+
+        padding-top: 50px;
+    }
+
+}

@@ -3,7 +3,8 @@ function Inscription(){
 
     return(
         <>
-            <h1>Inscription Fucking</h1>
+            <h1>Créer un Utilisateur</h1>
+            
         </>
     )
 }

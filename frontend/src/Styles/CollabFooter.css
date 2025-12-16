@@ -1,0 +1,34 @@
+@media (max-width: 400px) {
+    
+
+    .Collabfooter {
+    display: flex; /* Aligne les éléments sur une ligne */
+    
+    /* Pour espacer uniformément les images */
+    justify-content: space-around; 
+    
+    /* Centre les éléments verticalement (si les images n'ont pas la même hauteur) */
+    align-items: center; 
+    
+    /* Optionnel : Assurez-vous qu'il prend toute la largeur */
+    width: 100%; 
+    
+    /* Optionnel : Si c'est un footer, vous pouvez le fixer en bas */
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    
+    /* Définir une hauteur */
+    height: 60px; 
+    box-shadow: 0  0 10px  white;
+    /* z-index: 1000; */
+}
+
+/* Styles pour contrôler la taille des icônes/images à l'intérieur */
+.Collabfooter img {
+    height: 40px; /* Taille appropriée pour une icône de footer */
+    width: auto;
+    /* Ajoutez un effet visuel si vous voulez qu'elles soient cliquables */
+    cursor: pointer; 
+}
+}
