@@ -1,20 +1,14 @@
-/* Assurez-vous que le conteneur principal utilise Flexbox */
 @media (max-width: 400px){
 
     .Collab-Navbar {
-        /* Permet d'aligner les éléments sur une seule ligne */
         display: flex; 
 
-        /* ALIGNEMENT CLÉ : Écarte au maximum les éléments */
         justify-content: space-between; 
 
-        /* Optionnel : Centre verticalement si les images n'ont pas la même hauteur */
         align-items: center; 
 
-        /* Optionnel : Assure que la barre prend toute la largeur */
         width: 100%; 
 
-        /* Optionnel : Ajoutez un peu d'espace sur les côtés si nécessaire */
         padding: 0 10px; 
         box-sizing: border-box;
         position: fixed; 
@@ -27,29 +21,59 @@
 
     }
 
-    /* Optionnel : Ajoutez des styles pour contrôler la taille des images */
+    
     .image-logo, .porfile {
-        height: 50px; /* Exemple de taille pour le logo et l'image de profil */
+        height: 50px; 
         width: auto;
     }
 
    .bjr{
         position: fixed;
-        top: 70px; /* Juste sous la navbar de 60px */
-        left: 10px; /* Marge à gauche */
+        top: 70px;
+        left: 10px; 
         right: auto;
-        /* Supprimer l'ancien right: 79% pour ne pas contraindre la largeur */
+        
     }
 
     .date{
-        /* On retire le padding-top si on utilise top: [valeur] */
+       
         position: fixed;
-        top: 100px; /* 30px sous le bjr (70px + 30px) */
-        left: 10px; /* Marge à gauche identique à .bjr */
-        right: auto; /* CLÉ : Laisse l'élément s'étirer */
+        top: 100px; 
+        left: 10px;
+        right: auto; 
         width: auto;
 
         padding-top: 50px;
     }
+
+    .heures{
+
+        position: fixed;
+        right: 100px;
+        top: 250px;
+        width: auto;
+
+        width: 200px;  
+        height: 200px; 
+        
+        border-radius: 50%; 
+        
+        color: white; 
+    
+        display: flex; 
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+        
+        box-shadow: 1px 1px 1px 12px #242E7D; 
+    
+}
+    .compteur {
+
+        font-size: 1em;
+        font-weight: bold;
+        text-align: center;
+    }
+    
 
 }

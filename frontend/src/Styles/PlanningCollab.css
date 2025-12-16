@@ -1,0 +1,46 @@
+@media (max-width: 400px) {
+    
+
+    .Mplanning{
+        
+        position: fixed;
+        top: 89px;
+        left: 10px; 
+        right: auto;
+
+        font-size: 1em;
+        font-weight: bold;
+
+        border-radius: 100px;
+        background-color: #242E7D;
+        box-shadow: 1px 1px 1px 12px #242E7D;
+    }
+
+    .jour{
+
+        font-size: 1em;
+        font-weight: bold;
+
+        position: absolute;
+        left: 10px; 
+        right: auto; 
+        padding-top: 50px;
+    }
+
+    .horaires{
+
+        font-size: 1em;
+        font-weight: bold;
+
+        position: absolute;
+        right: 110px;
+        left: auto; 
+        padding-top: 130px;
+
+        width: auto;
+        height: auto;
+            
+    }
+
+    
+}

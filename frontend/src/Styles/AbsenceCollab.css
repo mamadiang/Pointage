@@ -1,0 +1,69 @@
+@media (max-width: 400px){
+
+    .Abs{
+
+        position: fixed;
+        top: 89px;
+        left: 10px; 
+        right: auto;
+
+        font-size: 1em;
+        font-weight: bold;
+
+        border-radius: 100px;
+        background-color: #242E7D;
+        box-shadow: 1px 1px 1px 12px #242E7D;
+        
+    }
+
+    .conges{
+        border-radius: 10px;
+        background-color: #242E7D;
+        box-sizing: border-box;
+
+        width: 300px;
+        height: 250px;
+
+        text-align: center;
+        
+        
+    }
+
+    .statut, .dateDebut, .dateFin {
+
+        display: block; 
+        margin-bottom: 60px; 
+
+        font-size: 1em;
+        font-weight: bold;
+
+
+    }
+
+    .statut{
+
+        background-color: aliceblue;
+        color: black;
+        border-radius: 10px;
+
+        text-align: center;
+
+        height: 50px;
+        padding-top: 5px;
+    }
+
+    .demander{
+        text-decoration: underline;
+        font-size: 1em;
+        font-weight: bold;
+
+        position: absolute;
+        left: 10px; 
+        right: auto; 
+        padding-top: 50px; 
+
+
+    }
+
+
+}

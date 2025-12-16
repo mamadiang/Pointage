@@ -23,6 +23,12 @@ function AccueilCollab(){
                 <h3 className="bjr"> Bonjour</h3>
                 <span className="date">Nous sommes le</span>
             </div>
+
+            <div className="heures">
+                <span className="compteur">Compteur</span>
+                <br />
+                <span>hh</span>
+            </div>
         
 
         <CollabFooter/>

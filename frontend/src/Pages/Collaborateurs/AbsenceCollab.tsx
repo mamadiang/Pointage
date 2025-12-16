@@ -4,6 +4,9 @@ import CollabFooter from "../../Composants/CollabFooter";
 import logo from '../../assets/Al-Rayan-logo.png'
 import profile from '../../assets/utilisateur.png'
 
+import '../../Styles/AbsenceCollab.css';
+
+
 function AbsenceCollab(){
 
 
@@ -19,6 +22,21 @@ function AbsenceCollab(){
 
             </div>
 
+
+            <div>
+                <span className="Abs">Absences/Congés</span>
+            </div>
+
+            <div className="conges">
+                
+                <span className="statut">Statut de la demande</span>
+                <span className="dateDebut">Du JJ/MM/AAAA</span>
+                <span className="dateFin">Au JJ/MM/AAAA</span>
+            </div>
+
+            <div>
+                <span className="demander">Nouvelle demande ?</span>
+            </div>
 
         <CollabFooter/>
         </>

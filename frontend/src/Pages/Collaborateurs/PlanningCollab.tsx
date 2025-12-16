@@ -3,6 +3,8 @@ import CollabFooter from "../../Composants/CollabFooter";
 import logo from '../../assets/Al-Rayan-logo.png';
 import profile from '../../assets/utilisateur.png'
 
+import '../../Styles/PlanningCollab.css'
+
 function PlanningCollab(){
 
 
@@ -18,6 +20,17 @@ function PlanningCollab(){
 
             </div>
         
+            <div>
+                <span className="Mplanning">Mon planning</span>
+            </div>
+
+            <div>
+                <span className="jour">Jour JJ/MM/AAAA</span>
+            </div>
+
+            <div>
+                <span className="horaires">hh:mn / hh:mn</span>
+            </div>
 
         <CollabFooter/>
         
