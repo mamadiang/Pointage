@@ -1,46 +1,58 @@
 @media (max-width: 400px) {
-    
 
-    .Mplanning{
-        
-        position: fixed;
-        top: 89px;
-        left: 10px; 
-        right: auto;
+
+    .Mplanning {
+
+        position: absolute; top: 89px; left: 10px; right: auto;
 
         font-size: 1em;
         font-weight: bold;
-
-        border-radius: 100px;
+        border-radius: 100px; 
         background-color: #242E7D;
-        box-shadow: 1px 1px 1px 12px #242E7D;
-    }
+        color: white; 
+        padding: 5px 15px; 
+        
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2); 
+}
 
-    .jour{
 
+.jour {
+    
         font-size: 1em;
         font-weight: bold;
+        display: block; /* S'assurer qu'il prend toute la ligne */
+        margin-top: 20px;
+        padding-left: 10px;
+}
 
-        position: absolute;
-        left: 10px; 
-        right: auto; 
-        padding-top: 50px;
-    }
-
-    .horaires{
-
+.horaires {
+        
         font-size: 1em;
         font-weight: bold;
-
-        position: absolute;
-        right: 110px;
-        left: auto; 
-        padding-top: 130px;
-
+        display: block;
+        margin-top: 10px;
+        padding-left: 10px;
+        
         width: auto;
         height: auto;
-            
-    }
+}
 
+.calendrier-container {
+
+        display: flex;
+        justify-content: center; 
+        margin-bottom: 40px;
+        margin-top: 2px;
+}
+
+
+.react-calendar {
+  
+        max-width: 95%; 
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 10px  rgba(0, 0, 0, 0.1);
     
+}
+
+
 }

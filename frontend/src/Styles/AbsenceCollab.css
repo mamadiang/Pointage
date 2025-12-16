@@ -2,17 +2,18 @@
 
     .Abs{
 
-        position: fixed;
-        top: 89px;
+        position: absolute; 
+        top: 89px; 
         left: 10px; 
         right: auto;
 
         font-size: 1em;
         font-weight: bold;
-
-        border-radius: 100px;
+        border-radius: 100px; 
         background-color: #242E7D;
-        box-shadow: 1px 1px 1px 12px #242E7D;
+        color: white; 
+        
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2); 
         
     }
 

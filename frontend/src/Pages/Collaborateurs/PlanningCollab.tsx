@@ -1,3 +1,4 @@
+import {useState} from "react";
 import CollabFooter from "../../Composants/CollabFooter";
 
 import logo from '../../assets/Al-Rayan-logo.png';
@@ -5,7 +6,12 @@ import profile from '../../assets/utilisateur.png'
 
 import '../../Styles/PlanningCollab.css'
 
+import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css'
+
 function PlanningCollab(){
+
+    const [date, setDate] = useState<Date | null>(new Date());
 
 
     return(
@@ -20,12 +26,34 @@ function PlanningCollab(){
 
             </div>
         
+           
+
             <div>
                 <span className="Mplanning">Mon planning</span>
             </div>
+ 
+            <div className="calendrier-container">
+
+                <Calendar
+                    onChange={setDate} 
+                    value={date}      
+                />
+
+            </div>
 
             <div>
-                <span className="jour">Jour JJ/MM/AAAA</span>
+
+                <span className="jour">
+
+                        {date ? date.toLocaleDateString('fr-FR', { 
+                            weekday: 'long' , 
+                            day: '2-digit',    
+                            month: 'long',     
+                            year: 'numeric' 
+                        }) : 'Sélectionnez une date'}
+
+                </span>
+
             </div>
 
             <div>

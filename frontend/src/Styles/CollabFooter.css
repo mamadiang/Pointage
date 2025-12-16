@@ -22,6 +22,7 @@
     height: 60px; 
     box-shadow: 0  0 10px  white;
     /* z-index: 1000; */
+    background-color: #242E7D ;
 }
 
 /* Styles pour contrôler la taille des icônes/images à l'intérieur */
