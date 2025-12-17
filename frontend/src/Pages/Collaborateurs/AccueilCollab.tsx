@@ -1,4 +1,8 @@
-import {useState} from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHand } from '@fortawesome/free-solid-svg-icons';
+
+
+import {useState, useEffect} from 'react';
 
 import profile from '../../assets/utilisateur.png'
 import logo from '../../assets/Al-Rayan-logo.png';
@@ -11,7 +15,19 @@ import CollabFooter from '../../Composants/CollabFooter';
 
 function AccueilCollab(){
 
-    const[date] = useState(new Date());
+    const [date] = useState(new Date());
+    
+    const [prenom, setPrenom] = useState('')
+
+
+    useEffect(() => {
+      const userData = localStorage.getItem('userData');
+
+  if (userData) {
+    const user = JSON.parse(userData);
+    setPrenom(user.prenom);
+  }
+}, []);
 
     return(
 
@@ -26,7 +42,12 @@ function AccueilCollab(){
 
             <div className="en-tete">
 
-                <h3 className="bjr"> Bonjour</h3>
+                <span className="bjr"> 
+
+                    Bonjour  <span className="user">{prenom}</span>
+                    <span className="icon-salut"><FontAwesomeIcon icon={faHand} /></span>
+                    
+                </span>
 
                 <span className="date">
                     

@@ -36,6 +36,18 @@
         
     }
 
+    .user{
+        font-size: 1.5em;
+        font-weight: bold;
+
+        color: green;
+    }
+
+    .icon-salut {
+    color: #FFCC4D;      
+    }
+
+
     .date{
        
         position: fixed;

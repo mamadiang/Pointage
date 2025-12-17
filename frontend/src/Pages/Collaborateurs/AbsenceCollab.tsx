@@ -1,3 +1,4 @@
+import {useEffect, useState} from "react";
 import CollabFooter from "../../Composants/CollabFooter";
 
 
@@ -9,6 +10,20 @@ import '../../Styles/AbsenceCollab.css';
 
 function AbsenceCollab(){
 
+const [prenom, setPrenom] = useState('')
+
+
+    useEffect(() => {
+
+        const userData = localStorage.getItem('userData');
+
+        if (userData) {
+        const user = JSON.parse(userData);
+        setPrenom(user.prenom);
+    }
+
+    }, []);
+
 
     return(
 
@@ -17,7 +32,7 @@ function AbsenceCollab(){
             <div className= "Collab-Navbar">
 
                     <img src={logo} className=" image-logo" alt="logo"  />
-                    <span className="user">Mamad</span>
+                    <span className="user">{prenom}</span>
                     <img src={profile} className="porfile" alt="profileUtilisateur"  />
 
             </div>

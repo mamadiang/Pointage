@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Styles/Connexion.css';
 import Navbar from '../Composants/Navbar';
 import Footer from '../Composants/Footer';
+import { useNavigate } from 'react-router-dom';
+
 
 const Connexion = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [loginError, setLoginError] = useState('')
+
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -37,14 +42,51 @@ const Connexion = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoginError(''); // On vide les erreurs précédentes
+
+    // 1. On vérifie d'abord la validation locale (Regex)
     if (validateEmail(email) && validatePassword(password)) {
-      console.log('Email:', email);
-      console.log('Password:', password);
-      // Vous pouvez ajouter la logique de connexion ici
+      try {
+        // 2. Appel à ton API
+        const response = await fetch('http://172.20.10.8:3000/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password
+          }),
+        });
+
+        const data = await response.json();
+        console.log('USER REÇU DU BACKEND :', data.user);
+        console.log('DATA COMPLETE :', data);
+        console.log('DATA.USER :', data.user);
+
+
+        if (response.ok) {
+          // 3. SI SUCCÈS : 
+          // On enregistre souvent un Token ou les infos user dans le navigateur
+          localStorage.setItem('userToken', data.token); 
+          localStorage.setItem('userData', JSON.stringify(data.user));
+
+          // On redirige vers l'accueil collab
+          navigate('/accueilCollab');
+        } else {
+          // 4. SI ERREUR (Mauvais mdp, utilisateur inconnu...)
+          setLoginError(data.message || "Identifiants invalides");
+        }
+      } catch (error) {
+        // En cas de problème réseau (serveur éteint, etc.)
+        setLoginError("Impossible de contacter le serveur.");
+      }
     }
   };
+  
 
   
   return (
@@ -57,6 +99,8 @@ const Connexion = () => {
                 <form onSubmit={handleSubmit} className="login-form">
 
                     <h2 className='connexion-title'>Connexion</h2>
+
+                    {loginError && <div className="error-main">{loginError}</div>}
 
                     <div className="form-group">
 

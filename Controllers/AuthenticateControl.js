@@ -10,19 +10,29 @@ class AuthenticateControl{
             const token = await AuthenticateServ.register(req.body)
             res.json({token: token});
         }catch(error){
+            console.log("bemo", Error)
             res.status(500).json({error: " Une erreur s'est produite lors de l'inscription"})
+            console.log("blem d'inscrire")
         }
     }
 
-    async login(req, res){
-        try{
-            const{email, password} = req.body;
-            const token = await AuthenticateServ.login(email, password)
-            res.json({token : token})
-        }catch(error){
-            res.status(401).json({error: " email ou mot de passe incorrect"})
+    async login(req, res) {
+
+            try {
+            const { email, password } = req.body;
+
+            const result = await AuthenticateServ.login(email, password);
+
+            res.json({
+                token: result.token,
+                user: result.user
+            });
+
+        } catch (error) {
+            res.status(401).json({ message: "Email ou mot de passe incorrect" });
         }
     }
+
 
     authenticateToken(req, res, next){
         const authHeader = req.headers['authorization'];

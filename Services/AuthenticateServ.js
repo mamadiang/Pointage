@@ -11,11 +11,24 @@ class AuthenticateServ{
     }
 
     async login(email, password){
+
         const utilisateur = await Utilisateur.findOne({where: {email: email}})
         if(!utilisateur || !await utilisateur.validatePassword(password)){
             throw new Error(" l'email ou le password est incorrect")
         }
-        return this.generateToken(utilisateur);
+
+        const token = this.generateToken(utilisateur);
+
+        return {
+            token,
+            user: {
+                id: utilisateur.id,
+                prenom: utilisateur.prenom,
+                nom: utilisateur.nom,
+                email: utilisateur.email,
+                role: utilisateur.role
+            }
+        };
     }
 
     generateToken(utilisateur){

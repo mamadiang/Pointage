@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import CollabFooter from "../../Composants/CollabFooter";
 
 import logo from '../../assets/Al-Rayan-logo.png';
@@ -12,6 +12,17 @@ import 'react-calendar/dist/Calendar.css'
 function PlanningCollab(){
 
     const [date, setDate] = useState<Date | null>(new Date());
+    const [prenom, setPrenom] = useState('')
+
+
+    useEffect(() => {
+      const userData = localStorage.getItem('userData');
+
+  if (userData) {
+    const user = JSON.parse(userData);
+    setPrenom(user.prenom);
+  }
+}, []);
 
 
     return(
@@ -21,7 +32,7 @@ function PlanningCollab(){
             <div className= "Collab-Navbar">
 
                     <img src={logo} className=" image-logo" alt="logo"  />
-                    <span className="user">Mamad</span>
+                    <span className="user">{prenom}</span>
                     <img src={profile} className="porfile" alt="profileUtilisateur"  />
 
             </div>
@@ -35,8 +46,8 @@ function PlanningCollab(){
             <div className="calendrier-container">
 
                 <Calendar
-                    onChange={setDate} 
-                    value={date}      
+                    onChange={(value) => setDate(value as Date | null)} 
+                    value={date}     
                 />
 
             </div>
