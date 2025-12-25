@@ -21,6 +21,8 @@ function App() {
         <Route path="/accueilCollab" element={<AccueilCollab/>} />
         <Route path="/absenceCollab" element={<AbsenceCollab/>} />
         <Route path="/planningCollab" element={<PlanningCollab/>} />
+        <Route path="/inscription" element={<Inscription/>} />
+        
 
       </Routes>
       
