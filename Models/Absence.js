@@ -47,14 +47,6 @@ Absence.init({
         allowNull: false
     },
 
-    planning_id:{
-        type: DataTypes.INTEGER,
-        references:{
-            model: "Planning",
-            key: 'id'
-        }
-    }
-
 
 }, {
     sequelize,
