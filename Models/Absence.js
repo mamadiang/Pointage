@@ -52,7 +52,8 @@ Absence.init({
     sequelize,
     tableName: 'absence',
     modelName: 'Absence',
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 })
 
 module.exports = Absence;

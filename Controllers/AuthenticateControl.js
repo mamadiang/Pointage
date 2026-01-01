@@ -10,9 +10,7 @@ class AuthenticateControl{
             const token = await AuthenticateServ.register(req.body)
             res.json({token: token});
         }catch(error){
-            console.log("bemo", Error)
             res.status(500).json({error: " Une erreur s'est produite lors de l'inscription"})
-            console.log("blem d'inscrire")
         }
     }
 
@@ -39,12 +37,12 @@ class AuthenticateControl{
         const token = authHeader && authHeader.split(' ')[1];
 
         if(!token){
-            res.status(401).json({error: " Vous n'avez pas accés à cette route"});
+            return res.status(401).json({error: " Vous n'avez pas accés à cette route"});
         }
 
         jwt.verify(token, config.SECRET, (error, utilisateur) => {
             if(error){
-                res.status(401).json({error: " Votre token n'est pas valide"})
+                return res.status(401).json({error: " Votre token n'est pas valide"})
             }
             req.user = utilisateur;
             next();

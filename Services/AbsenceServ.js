@@ -9,12 +9,22 @@ class AbsenceServ{
         }]})
     }
 
-    async getAbsenceByPk(absenceId){
-        return await Absence.findByPk(absenceId, {include:[{
+    // async getAbsenceByPk(absenceId){
+    //     return await Absence.findByPk(absenceId, {include:[{
+    //         model: Utilisateur,
+    //         as: 'utilisateur'
+    //     }]})
+    // }
+    async getAbsenceByUtilisateurId(utilisateurId){
+    return await Absence.findAll({
+        where: { utilisateur_id: utilisateurId },
+        include: [{
             model: Utilisateur,
             as: 'utilisateur'
-        }]})
-    }
+        }],
+    });
+}
+
 
     async addAbsence(absenceData){
         return await Absence.create(absenceData, {include:[{

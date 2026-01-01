@@ -1,129 +1,204 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import CollabFooter from "../../Composants/CollabFooter";
-
 
 import logo from '../../assets/Al-Rayan-logo.png'
 import profile from '../../assets/utilisateur.png'
 
 import '../../Styles/AbsenceCollab.css';
 
+interface Absence {
+    utilisateur_id?: number; 
+    date_debut: string;
+    date_fin: string;
+    type: string;
+    etat: string;
+    commentaire?: string;
+}
 
-function AbsenceCollab(){
+function AbsenceCollab() {
+    const [prenom, setPrenom] = useState('');
+    const [absence, setAbsence] = useState('absence'); 
+    const [mesAbsences, setMesAbsences] = useState<Absence[]>([]);
+    const [formData, setFormData] = useState({
+        date_debut: '',
+        date_fin: '',
+        type: '',
+        etat: '',
+        commentaire: '',
+        utilisateur_id: '',
+    });
 
-const [prenom, setPrenom] = useState('')
-const [absence, setAbsence] = useState('absence')
+    const [error, setError] = useState('');
+    const [successMessage, setSuccesMessage] = useState('');
 
-const [formData, setFormData] = useState({
-
-    date_debut: '', date_fin:'', type:'', utilisateur_id:'', etat:'', commentaire:''
-})
-
-const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-
-    setFormData({   
-        ...formData,
-        [e.target.name] : e.target.value
-    })
-};
-
-const handleSubmit = async (e) => {
-    e.preventDefault(); 
-    try {
-      const response = await fetch('http:/http://172.20.10.8:3000/absence', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-        if (response.ok) {
-            console.log('Demande d\'absence soumise avec succès');
-        } else {
-            console.error('Erreur lors de la soumission de la demande d\'absence');
-        }
-    } catch (error) {
-      console.error('Erreur réseau:', error);
-    }
+    const formatDate = (dateString: string) => {
+        if (!dateString) return '';
+        return new Date(dateString).toLocaleDateString('fr-FR');
     };
-    
 
-    useEffect(() => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
-        const userData = localStorage.getItem('userData');
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formData.utilisateur_id) {
+    setError("Utilisateur non défini !");
+    return;
+  }
 
-        if (userData) {
+  const payload = {
+    ...formData,
+    utilisateur_id: Number(formData.utilisateur_id) // conversion en nombre
+  };
+
+        setError('');
+        setSuccesMessage('');
+        const token = localStorage.getItem('token');
+
+        try {
+            const response = await fetch('http://172.20.10.8:3000/absence', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setSuccesMessage("Demande d'absence soumise avec succès");
+
+                setMesAbsences(prev => [
+                    ...prev,
+                    {
+                        date_debut: formData.date_debut,
+                        date_fin: formData.date_fin,
+                        type: formData.type,
+                        etat: formData.etat,
+                        commentaire: formData.commentaire,
+                        utilisateur_id: Number(formData.utilisateur_id),
+                    }
+                ]);
+
+                setTimeout(() => setAbsence("absence"), 3000);
+
+                setFormData({
+                    date_debut: '',
+                    date_fin: '',
+                    type: '',
+                    etat: '',
+                    commentaire: '',
+                    utilisateur_id: "",
+                });
+            } else {
+                setError(data.error || "Erreur lors de la soumission de la demande d'absence");
+            }
+        } catch (err) {
+            console.error("Erreur réseau:", err);
+            setError("Erreur réseau");
+        }
+    };
+
+   useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    const token = localStorage.getItem('token');
+
+    if (userData) {
         const user = JSON.parse(userData);
         setPrenom(user.prenom);
+        setFormData(prev => ({
+            ...prev,
+            utilisateur_id: user.id.toString(),
+            etat: 'En attente'
+        }));
+        
+
+        fetch(`http://172.20.10.8:3000/absence/utilisateur/${user.id}`, { 
+
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (Array.isArray(data)) {
+                setMesAbsences(data);
+            } else {
+                setMesAbsences([]);
+            }
+        })
+        .catch(err => console.error(err));
     }
+}, []);
 
-    }, []);
-
-
-    return(
-
+    return (
         <>
-            
-            <div className= "Collab-Navbar">
-
-                    <img src={logo} className=" image-logo" alt="logo"  />
-                    <span className="user">{prenom}</span>
-                    <img src={profile} className="porfile" alt="profileUtilisateur"  />
-
+            <div className="Collab-Navbar">
+                <img src={logo} className="image-logo" alt="logo" />
+                <span className="user">{prenom}</span>
+                <img src={profile} className="porfile" alt="profileUtilisateur" />
             </div>
 
             <div>
-            
-                <div  className="page1">
-                   
+                <div className="page1">
                     {absence === 'absence' && (
+                        <>
+                            <div>
+                                <span className="Abs">Absences/Congés</span>
+                            </div>
 
-                    <>        
-                        <div>
-                            <span className="Abs">Absences/Congés</span>
-                        </div> 
+                            <div className="conges">
+                                {mesAbsences.length > 0 ? (
+                                    mesAbsences.map((absenceItem, index) => (
+                                        
+                                        <div key={index} className="conges-item">
 
-                        <div className="conges">
-                            
-                                <span className="statut">{formData.etat}</span>
-                                <span className="dateDebut">Du {formData.date_debut}</span>
-                                <span className="dateFin">Au {formData.date_fin}</span>
+                                            <span className="statut">{absenceItem.etat || 'En attente'}</span>
+                                            <span className="dateDebut">Du {formatDate(absenceItem.date_debut)}</span>
+                                            <span className="dateFin">Au {formatDate(absenceItem.date_fin)}</span>
 
-                        </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <span className="noAbsence">Aucune demande d'absence en cours.</span>
+                                )}
+                            </div>
 
-                        <div>
+                            <div>
                                 <span className="demander" onClick={() => setAbsence('suivante')}>Nouvelle demande ?</span>
-                        </div>
-
-                    </>
-
+                            </div>
+                        </>
                     )}
-                    
                 </div>
 
                 <div className="page2">
 
                     {absence === 'suivante' && (
+                        <>
+                            <div>
+                                <span className="Abs">Absences/Congés</span>
+                            </div>
 
-                    <>       
-                        <div>
-                            <span className="Abs">Absences/Congés</span>
-                        </div> 
-                        {}
-                        
-                         <form onSubmit={handleSubmit} className="formAbsence">
-                            {}
+                            {error && <div className="error">{error}</div>}
+                            {successMessage && <div className="success">{successMessage}</div>}
+
+                            <form onSubmit={handleSubmit} className="formAbsence">
 
                                 <div>
-
-                                    <input type="date" value={formData.date_debut} onChange={handleChange} name="date_debut" id="" />
-                                    <input type="date" value={formData.date_fin} onChange={handleChange} name="date_fin" id="" />
-                                
+                                    <input type="date" name="date_debut" value={formData.date_debut} onChange={handleChange} />
+                                    <input type="date" name="date_fin" value={formData.date_fin} onChange={handleChange} />
                                 </div>
 
                                 <div>
-
                                     <select name="type" value={formData.type} onChange={handleChange} id="typeDeConge">
-
                                         <option value=""></option>
                                         <option value="Congé Payé">Congé Payé</option>
                                         <option value="Congé Parental">Congé Parental</option>
@@ -131,37 +206,32 @@ const handleSubmit = async (e) => {
                                         <option value="Congé Sabatique">Congé Sabatique</option>
                                         <option value="Congé maladie">Congé Maladie</option>
                                         <option value="Autres">Autres</option>
-
                                     </select>
 
-                                <br />
-                                <br />
+                                    <br /><br />
 
-                                <div>
-                                    <textarea name="commentaire" value={formData.commentaire}
-                                    onChange={handleChange}  
-                                    id="commenatire" 
-                                    cols={30} rows={10}>
-                                    </textarea>
-                                    </div>
-
+                                    <textarea
+                                        name="commentaire"
+                                        value={formData.commentaire}
+                                        onChange={handleChange}
+                                        cols={30}
+                                        rows={10}
+                                    />
                                 </div>
-                                <button type="submit" >Envoyer la demande</button>
+
+                                <button type="submit">Envoyer la demande</button>
 
                             </form>
+                        </>
+                    )}
 
-                        
+                </div>
 
-                    </> )}
-
-                </div> 
-               
-            
             </div>
 
-        <CollabFooter/>
+            <CollabFooter />
         </>
-    )
+    );
 }
 
 export default AbsenceCollab;

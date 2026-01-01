@@ -3,7 +3,7 @@
     .Abs{
 
         position: absolute; 
-        top: 89px; 
+        top: 90px; 
         left: 10px; 
         right: auto;
 
@@ -38,7 +38,6 @@
         font-size: 1em;
         font-weight: bold;
 
-
     }
 
     .statut{
@@ -64,6 +63,13 @@
         padding-top: 50px; 
 
 
+    }
+
+    .conges-item{
+        margin-top: 20px;
+        background-color: #242E7D;
+        height: 250px;
+        border-radius: 10px;
     }
 
 
