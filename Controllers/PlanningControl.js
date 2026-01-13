@@ -12,8 +12,8 @@ class PlanningControl{
     }
 
     async getPlanningByPk(req, res){
-        try{
-            const planning = await PlanningServ.getPlanningByPk(req.params.id)
+        try{ 
+            const planning = await PlanningServ.getPlanningByPk(req.params.id, req.query.date)
             res.json(planning)
         }catch(error){
             res.status(500).json({error: " Une erreur s'est produite lors de la recuperation du planning"})
@@ -29,14 +29,7 @@ class PlanningControl{
         }
     }
 
-    async getPlanningAbsences(req, res){
-        try{
-            const planning = await PlanningServ.getPlanningAbsences(req.params.id)
-            res.json(planning)
-        }catch(error){
-            res.json(500).json({error: " Une erreur s'est produite lors de la récuperation des absences du planning"})
-        }
-    }
+   
 }
 
 module.exports = new PlanningControl();

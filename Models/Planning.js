@@ -24,11 +24,6 @@ Planning.init({
         allowNull: false
     },
 
-    jour:{
-        type: DataTypes.ENUM('Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'),
-        allowNull: false
-    },
-
     utilisateur_id:{
         type: DataTypes.INTEGER,
         references:{
