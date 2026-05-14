@@ -17,7 +17,7 @@ app.use(cors());
 
 
 app.use('/role', RoleRouter);
-app.use('/utilisateur', AuthenticateControl.authenticateToken, UtilisateurRoute);
+app.use('/utilisateur', /*AuthenticateControl.authenticateToken*/ UtilisateurRoute);
 app.use('/horaire', HoraireRouter);
 app.use('/planning', PlanningRouter);
 app.use('/absence', AbsenceRouter);

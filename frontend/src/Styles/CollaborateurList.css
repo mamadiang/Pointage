@@ -1,0 +1,32 @@
+table{
+    background-color: aliceblue;
+}
+/* CollaborateurList.css */
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* TRÈS IMPORTANT : fusionne les doubles bordures en une seule */
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+th, td {
+    border: 1px solid #ddd; /* La ligne grise de séparation */
+    padding: 12px;         /* De l'espace pour que le texte respire */
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4; /* Une couleur de fond pour l'en-tête */
+    font-weight: bold;
+}
+
+/* Optionnel : Une ligne sur deux colorée pour faciliter la lecture */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Optionnel : Effet au survol de la souris */
+tr:hover {
+    background-color: green;
+}
