@@ -1,9 +1,6 @@
 table{
     background-color: aliceblue;
-}
-/* CollaborateurList.css */
 
-table {
     width: 100%;
     border-collapse: collapse; /* TRÈS IMPORTANT : fusionne les doubles bordures en une seule */
     margin-top: 20px;

@@ -37,14 +37,13 @@ function CollabList(){
             return response.json()
         })
         .then(data =>{
-            console.log('Rcupertaion des données', data);
+            console.log('Recupertaion des données', data);
             setCollabs(data)
         })
         .catch(error =>{
             setError('Erreur de récupération des données: ' + error.message)
         })
 
-        setCollabs;
     }, [])
 
     return(
