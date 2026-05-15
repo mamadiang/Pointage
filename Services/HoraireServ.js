@@ -16,6 +16,18 @@ class HoraireServ{
         }]})
     }
 
+    async getHoraireByUtilisateur(userId) {
+        return await Horaire.findAll({
+            where: { utilisateur_id: userId },
+            include: [{
+            model: Utilisateur,
+            as: 'utilisateur'
+        }]
+    });
+}
+
+
+
     async addHoraire(horaireData){
         return await Horaire.create(horaireData)
     }

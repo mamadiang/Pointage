@@ -4,7 +4,7 @@ import '../../Styles/CollaborateurList.css'
 
 function Horaires(){
 
-    interface heures{
+    interface Heures{
         id?: number;
         utilisateur?:{
             prenom: string;
@@ -17,8 +17,9 @@ function Horaires(){
         date_creation: string;
     }
 
-    const [heure, setHeure] = useState<heures[]>([])
+    const [heure, setHeure] = useState<Heures[]>([])
     const [error, setError] = useState('')
+    
 
     useEffect(()=>{
 
@@ -43,7 +44,8 @@ function Horaires(){
 
     useEffect(()=>{
 
-        fetch('http://172.20.10.8:3000/horaire/:id')
+        const userId = heure
+        fetch(`http://172.20.10.8:3000/horaire/utilisateur/${userId}`)
 
         .then(response =>{
             if(!response.ok){
