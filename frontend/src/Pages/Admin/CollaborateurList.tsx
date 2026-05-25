@@ -37,7 +37,7 @@ function CollabList(){
             return response.json()
         })
         .then(data =>{
-            console.log('Recupertaion des données', data);
+            console.log('Recuperation des données', data);
             setCollabs(data)
         })
         .catch(error =>{
