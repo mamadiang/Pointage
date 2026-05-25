@@ -20,6 +20,7 @@ function Horaires(){
     const [heure, setHeure] = useState<Heures[]>([])
     const [error, setError] = useState('')
     
+    
 
     useEffect(()=>{
 
@@ -40,28 +41,6 @@ function Horaires(){
                 console.log('Erreur de recuperation des données' + error.message)
             })
         
-    }, []);
-
-    useEffect(()=>{
-
-        const userId = heure
-        fetch(`http://172.20.10.8:3000/horaire/utilisateur/${userId}`)
-
-        .then(response =>{
-            if(!response.ok){
-                throw new Error(' aucune reponse obtenu')  
-            }return response.json()
-        })
-        .then(data =>{
-            if(data){
-                console.log('recuperation reussi', data);
-                setHeure(data)  
-            }
-        })
-        .catch(error =>{
-            setError('Erreur de recuperation de ses heures' + error.message)
-        })
-
     }, []);
 
     return(
@@ -96,7 +75,9 @@ function Horaires(){
                     <td>{horaires.utilisateur?.nom}</td>
                     <td>{horaires.entree}</td>
                     <td>{horaires.sortie}</td>
-                    <td>{horaires.date_creation}</td>
+                    <td>{
+                        new Date(horaires.date_creation).toLocaleDateString('fr-FR')}
+                    </td>
                 </tr>
             ))}
             </tbody>

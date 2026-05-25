@@ -8,7 +8,7 @@ import AbsenceCollab from "./Pages/Collaborateurs/AbsenceCollab";
 import PlanningCollab from "./Pages/Collaborateurs/PlanningCollab";
 import CollabList from "./Pages/Admin/CollaborateurList";
 import Horaires from "./Pages/Admin/Horaires";
-
+import Planning from "./Pages/Admin/Planning";
 
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
         <Route path="/inscription" element={<Inscription/>} />
         <Route path="/collaborateurList" element={<CollabList/>} />
         <Route path="/horaire" element={<Horaires/>} />
+        <Route path="/planning" element={<Planning/>} />
         
 
       </Routes>
