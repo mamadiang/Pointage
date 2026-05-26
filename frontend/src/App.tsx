@@ -9,6 +9,7 @@ import PlanningCollab from "./Pages/Collaborateurs/PlanningCollab";
 import CollabList from "./Pages/Admin/CollaborateurList";
 import Horaires from "./Pages/Admin/Horaires";
 import Absences from "./Pages/Admin/Absence";
+import HorairesId from "./Pages/Admin/HoraireId";
 
 function App() {
  
@@ -28,6 +29,7 @@ function App() {
         <Route path="/collaborateurList" element={<CollabList/>} />
         <Route path="/horaire" element={<Horaires/>} />
         <Route path="/absence" element={<Absences/>} />
+        <Route path="/horaireId/:id" element={<HorairesId/>} />
         
 
       </Routes>

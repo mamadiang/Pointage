@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 
 import '../../Styles/CollaborateurList.css'
+import { useNavigate } from "react-router-dom";
+
 
 function Horaires(){
 
     interface Heures{
         id?: number;
         utilisateur?:{
+            id?: number,
             prenom: string;
             nom: string;
         }
@@ -19,6 +22,8 @@ function Horaires(){
 
     const [heure, setHeure] = useState<Heures[]>([])
     const [error, setError] = useState('')
+
+    const navigate = useNavigate();
     
     
 
@@ -38,7 +43,7 @@ function Horaires(){
                 }
             })
             .catch(error =>{
-                console.log('Erreur de recuperation des données' + error.message)
+                setError('Erreur de recuperation des données' + error.message)
             })
         
     }, []);
@@ -69,7 +74,11 @@ function Horaires(){
             <tbody>
                 {heure.map(horaires =>(
 
-                <tr key={horaires.id}>
+                <tr key={horaires.id}
+                    
+                    onClick={()=>navigate(`/HoraireId/${horaires.utilisateur?.id}`)}
+                    style={{cursor:'pointer'}}
+                >
 
                     <td>{horaires.utilisateur?.prenom}</td>
                     <td>{horaires.utilisateur?.nom}</td>
