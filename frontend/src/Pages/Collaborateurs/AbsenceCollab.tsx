@@ -161,7 +161,14 @@ function AbsenceCollab() {
                                         
                                         <div key={index} className="conges-item">
 
-                                            <span className="statut">{absenceItem.etat || 'En attente'}</span>
+                                            <span className="statut"
+                                            style={{
+                                                backgroundColor: absenceItem.etat === 'Approuvé'?'green'
+                                                                :absenceItem.etat === 'Rejeté'?'red' 
+                                                                :'orange'
+                                            }}
+                                            >{absenceItem.etat || 'En attente'}
+                                            </span>
                                             <span className="dateDebut">Du {formatDate(absenceItem.date_debut)}</span>
                                             <span className="dateFin">Au {formatDate(absenceItem.date_fin)}</span>
 

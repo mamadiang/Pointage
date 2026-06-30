@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function Absence(){
@@ -8,6 +9,7 @@ function Absence(){
 
         id : number,
         utilisateur?:{
+            id?: number
             prenom: string,
             nom: string
         },
@@ -22,6 +24,8 @@ function Absence(){
 
     const [repos, setRepos] = useState<Conges[]>([])
     const [ erreur, setErreur] = useState('');
+
+    const navigate = useNavigate();
 
 
     useEffect(()=>{
@@ -74,7 +78,11 @@ function Absence(){
                 <tbody>
 
                     {repos.map(conge=>(
-                    <tr key={conge.id}>
+                    <tr key={conge.id}
+                    
+                        onClick={()=> navigate(`/AbsenceId/${conge.utilisateur?.id}`)}
+                        style={{cursor: 'pointer'}}
+                    >
 
                         <td>{conge.utilisateur?.prenom}</td>
                         <td>{conge.utilisateur?.nom}</td>

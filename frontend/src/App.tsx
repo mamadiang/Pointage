@@ -10,6 +10,7 @@ import CollabList from "./Pages/Admin/CollaborateurList";
 import Horaires from "./Pages/Admin/Horaires";
 import Absences from "./Pages/Admin/Absence";
 import HorairesId from "./Pages/Admin/HoraireId";
+import AbsenceId from "./Pages/Admin/AbsenceId";
 
 function App() {
  
@@ -30,6 +31,7 @@ function App() {
         <Route path="/horaire" element={<Horaires/>} />
         <Route path="/absence" element={<Absences/>} />
         <Route path="/horaireId/:id" element={<HorairesId/>} />
+        <Route path="/absenceId/:id" element={<AbsenceId/>} />
         
 
       </Routes>

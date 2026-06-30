@@ -31,6 +31,21 @@ class AbsenceControl{
         }
     }
 
+
+    async updateAbsence(req, res){
+        try{
+            const absence = await AbsenceServ.updateAbsence(
+                req.params.id,
+                req.body
+            );
+            res.json(absence);
+        }catch(error){
+            res.status(500).json({
+                error: "Erreur de modification"
+            });
+        }
+    }
+
 }
 
 module.exports = new AbsenceControl();
